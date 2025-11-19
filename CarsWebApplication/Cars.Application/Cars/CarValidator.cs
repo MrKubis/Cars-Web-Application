@@ -17,10 +17,10 @@ namespace Cars.Application.Cars
             RuleFor(x=> x.DoorsNumber).InclusiveBetween(2,10).WithMessage("Doors number must be between 2 and 5");
             RuleFor(x=>x.LuggageCapacity).NotEmpty().WithMessage("Luggage capacity is required");
             RuleFor(x=>x.EngineCapacity).NotEmpty().WithMessage("Engine capacity is required");
-            RuleFor(x=>x.FuelType).NotEmpty().WithMessage("Fuel type is required");
+            RuleFor(x=>x.FuelType).IsInEnum().WithMessage("Fuel type is required");
             RuleFor(x=>x.ProductionDate).NotEmpty().WithMessage("Production date is required");
             RuleFor(x=>x.CarFuelConsumption).NotEmpty().WithMessage("Car fuel consumption is required");
-            RuleFor(x=>x.BodyType).NotEmpty().WithMessage("Body type is required");
+            RuleFor(x=>x.BodyType).IsInEnum().WithMessage("Body type is required");
         }
 
 

@@ -17,10 +17,11 @@ namespace Cars.API.Controllers
             Console.WriteLine("GetCars called");
             return await Mediator.Send(new List.Query());
         }
-        public async Task<IActionResult> GetCar(Guid Id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCar(Guid id)
         {
 
-            var result = await Mediator.Send(new Details.Query { Id = Id });
+            var result = await Mediator.Send(new Details.Query { Id = id });
             if (result == null || result.Value == null)
                 return NotFound();
             if (result.IsSuccess)
@@ -29,7 +30,7 @@ namespace Cars.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditCar(Guid id, Car car)
+        public async Task<IActionResult> EditCar(Guid id,[FromBody] Car car)
         {
             car.Id = id;
             var result =  await Mediator.Send(new Edit.Command { Car = car });
@@ -41,7 +42,7 @@ namespace Cars.API.Controllers
         }
 
         [HttpPost] // api/cars
-        public async Task<IActionResult> CreateCar(Car car)
+        public async Task<IActionResult> CreateCar([FromBody] Car car)
         {
             var result =  await Mediator.Send(new Create.Command { Car = car });
             if (result.IsSuccess && result.Value != null)
