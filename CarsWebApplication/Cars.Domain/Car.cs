@@ -14,7 +14,6 @@ public class Car
     [Required]
     [StringLength(50)]
     public string Model { get; set; }
-    
     public int DoorsNumber { get; set; }
     public int LuggageCapacity { get; set; }
     public int EngineCapacity { get; set; }
