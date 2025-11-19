@@ -1,9 +1,13 @@
-import Layout from './Layout';
 import './App.css';
+import Navbar from './navbar/Navbar';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-      <Layout/>
+      <>
+      <Navbar/>
+      <Outlet/>
+      </>
   );
 }
 
