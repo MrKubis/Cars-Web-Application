@@ -1,0 +1,10 @@
+.navbar-container{
+    color: #FFFFFF;
+    text-decoration: none;
+    width: 100%;
+}
+.navbar-button{
+    font-size: larger;
+    padding: 10px;
+    border-radius: 0%;
+}
