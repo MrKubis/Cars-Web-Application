@@ -4,6 +4,7 @@ import CarsListPage from "./pages/CarsListPage";
 import CarDetailsPage from "./pages/CarDetailsPage";
 import CarEditPage from "./pages/CarEditPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import CarCreatePage from "./pages/CarCreatePage";
 
 export const routes: RouteObject[] = [
     {
@@ -21,6 +22,10 @@ export const routes: RouteObject[] = [
             {
                 path:'cars/edit/:id',
                 element:<CarEditPage/>
+            },
+            {
+                path:'cars/create',
+                element:<CarCreatePage/>
             },
             {
                 path:'not-found',

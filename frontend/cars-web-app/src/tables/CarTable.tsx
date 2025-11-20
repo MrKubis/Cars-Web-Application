@@ -1,4 +1,4 @@
-import { Car } from "../interfaces/Car";
+import { BodyTypeMap, Car, FuelTypeMap } from "../interfaces/Car";
 
 export default function CarTable(props: {car:Car}){
     const car = props.car;
@@ -31,7 +31,7 @@ export default function CarTable(props: {car:Car}){
             </tr>
             <tr>
                 <td>Fuel type</td>
-                <td>{car.fuelType}</td>
+                <td>{FuelTypeMap[parseInt(car.fuelType)]}</td>
             </tr>
             <tr>
                 <td>Luggage capacity</td>
@@ -41,6 +41,10 @@ export default function CarTable(props: {car:Car}){
             <tr>
                 <td>Production date</td>
                 <td>{new Date(car.productionDate).toLocaleDateString()}</td>
+            </tr>
+            <tr>
+                <td>Body Type</td>
+                <td>{BodyTypeMap[parseInt(car.bodyType)]}</td>
             </tr>
             </tbody>
         </table>
