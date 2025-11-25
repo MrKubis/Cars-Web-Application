@@ -27,7 +27,7 @@ export const FuelTypeMap: Record<number,FuelType>={
 };
 
 export interface Car{
-    id:string,
+    id:string | null,
     brand:string,
     carFuelConsumption: number
     doorsNumber: number
