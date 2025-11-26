@@ -28,8 +28,8 @@ export default function CarDetailsPage(){
     },[]);
 
     return(
-        <div>
+        <>
             {car && <CarDisplay car = {car}/>}
-        </div>
+        </>
     );
 }

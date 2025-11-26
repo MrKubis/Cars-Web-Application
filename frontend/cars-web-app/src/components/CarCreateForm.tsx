@@ -2,6 +2,8 @@ import { FormEvent, useState } from "react";
 import {Car, FuelType,FuelTypeMap,BodyType,BodyTypeMap } from "../interfaces/Car";
 import axios from "axios";
 import "./styles/Form.css"
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 export default function CarCreateForm(){
     
     const [car,setCar] = useState<Car | null>(null)
@@ -35,51 +37,76 @@ export default function CarCreateForm(){
                 bodyType:parseInt(formData.get("bodyType") as string)
         })
         .then(response =>{
-            console.log(response.data);
+            console.log(response);
         })
         .catch(error =>{
             const errorlist = error.response.data.errors;
             console.log(errorlist);
         })
         .finally(() =>{
-            setIsLoading(false);            
+            setIsLoading(false);       
+            event.currentTarget.reset();     
         })
     }
     
 
 
     return(
-        <div className="form-container">
-            <form onSubmit={handleSubmit}>
-                <p>Brand name</p>
-                <input type="text" name="brandName" required title="Brand name"/>
-                <p>Model name</p>
-                <input type="text" name="modelName" required title="Model name"/>
-                <p>Number of doors</p>
-                <input type="number" name="doorsNumber" required title="Number of doors"/>
-                <p>Luggage capacity</p>
-                <input type="number" name="luggageCapacity" required title="Luggage capacity"/>
-                <p>Engine capacity</p>
-                <input type="number" name="engineCapacity" required title="Engine capacity"/>
-                <p>Fuel type</p>
-                <select required name="fuelType">
-                    {fuelTypeArray.map((key) =>{
-                      return <option key={key} value={key}>{FuelTypeMap[key]}</option>  
+        <form onSubmit={handleSubmit}>
+            <div className="form-container">
+                <div>
+                    <p>Brand name</p>
+                    <input type="text" name="brandName" required title="Brand name"/>
+                </div>
+                <div>
+                    <p>Model name</p>
+                    <input type="text" name="modelName" required title="Model name"/>
+                </div>
+                <div>
+                    <p>Body Type</p>
+                    <select required name="bodyType">
+                    <option value="" selected disabled hidden></option>
+                    {bodyTypeArray.map((key) =>{
+                        return <option key={key} value={key}>{BodyTypeMap[key]}</option>;
                     })}
-                </select>
-                <p>Fuel Consumption</p>
-                <input type="text" name="fuelConsumption" required title="Fuel Consumption"/>
-                <p>Date of production</p>
-                <input type="date" name="productionDate" required title= "Date of production"/>
-                <p>Body Type</p>
-                <select required name="bodyType">
-                {bodyTypeArray.map((key) =>{
-                    return <option key={key} value={key}>{BodyTypeMap[key]}</option>;
-                })}
-                </select>
-                <input type="submit" value={"Create a car"}/>
-            </form>
-        </div>
+                    </select>
+                </div>
+                <div>
+                    <p>Number of doors</p>
+                    <input type="number" name="doorsNumber" required title="Number of doors"/>
+                </div>
+                <div>
+                    <p>Luggage capacity</p>
+                    <input type="number" name="luggageCapacity" required title="Luggage capacity"/>
+                </div>
+                <div>
+                    <p>Engine capacity</p>
+                    <input type="number" name="engineCapacity" required title="Engine capacity"/>
+                </div>
+                <div>
+                    <p>Fuel type</p>
+                    <select required name="fuelType">
+                        <option value="" selected disabled hidden></option>
+                        {fuelTypeArray.map((key) =>{
+                        return <option key={key} value={key}>{FuelTypeMap[key]}</option>  
+                        })}
+                    </select>
+                </div>
+                <div>
+                    <p>Fuel Consumption</p>
+                    <input type="text" name="fuelConsumption" required title="Fuel Consumption"/>
+                    
+                </div>
+                <div>
+                    <p>Date of production</p>
+                    <input type="date" name="productionDate" required title= "Date of production"/>
+                                    
+                </div>
+            </div>
+            <input type="submit" value={"Create a car"}/>                   
+
+        </form>
+
 
     );
 }

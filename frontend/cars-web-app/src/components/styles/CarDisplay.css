@@ -3,8 +3,36 @@
     width: max-content;
     font-size: x-large;
     transition: 0.15s;
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+}
+table{
+
+    border-collapse: collapse;
 }
 
 th, td {
     padding: 10px;
+}
+tr:nth-child(2n){
+    background-color: rgb(240, 240, 240);
+}
+
+td:first-child{
+    background-color: rgb(19, 14, 22);
+    color:white
+}
+.navlink-container{
+    background-color: rgb(19, 14, 22);
+    color:white;
+    margin-top: 30px;
+    padding: 15px;
+    padding-inline: 100px;
+    cursor: pointer;
+
+    transition: 0.1s;
+}
+.navlink-container:hover{
+    transform: scale(1.05);
 }

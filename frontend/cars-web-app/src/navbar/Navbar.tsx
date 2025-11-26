@@ -5,15 +5,21 @@ import "./Navbar.css"
 export default function Navbar(){
     return(
         <div className="navbar-container">
-            <NavLink to="/cars" style={{textDecoration:'none'}}>
-                    <button className="navbar-button">
+            <NavLink className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "active" : ""
+                                    }
+             to="/cars" style={{textDecoration:'none'}}>
+                    <div className="navbar-link-container">
                         Cars list
-                    </button>
+                    </div>
                 </NavLink>
-                <NavLink to="/cars/create">
-                    <button className="navbar-button">
+                <NavLink className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "active" : ""
+                                    }
+                  style={ { textDecoration:"none"}} to="/cars/create">
+                    <div className="navbar-link-container">
                         Create a car
-                    </button>
+                    </div>
                 </NavLink> 
         </div>
     )

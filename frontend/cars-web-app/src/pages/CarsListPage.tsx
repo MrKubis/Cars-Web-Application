@@ -29,11 +29,12 @@ export default function CarsListPage(){
         <ul>
             {
                 cars.map(car =>(
+                    <NavLink style={{color:"black",textDecoration:"none"}} key={car.id} to={`${car.id}`}>
                     <li>
-                        <NavLink style={{textDecoration:"none"}} key={car.id} to={`${car.id}`}>
-                            {car.id}
-                        </NavLink>
+                        {`${car.brand}`}
                     </li>
+                    </NavLink>
+
                 ))
             }
         </ul>

@@ -8,7 +8,11 @@ export default function CarDisplay(props: {car:Car}){
     return(
         <div className="car-display-container">
             <CarTable car = {car}/>
-            <NavLink  to={`/cars/edit/${car.id}`}>Edit</NavLink>
+                <NavLink style={{textDecoration:"none", color:"white"}}  to={`/cars/edit/${car.id}`}>
+                    <div className="navlink-container">
+                        Edit
+                    </div>
+                </NavLink>
         </div>
 
     )

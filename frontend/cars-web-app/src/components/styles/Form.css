@@ -1,8 +1,33 @@
-.formcontainer{
-    display: flex;
+.form-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:20px;
     flex-direction: row;
+    margin-bottom: 15px;
 }
-form{
-    display: flex;
-    flex-direction: column;
+input{
+    font-size: larger;
+    border: 0;
+    background-color: rgb(245, 245, 245);
+    padding-block: 15px;
+    width: 100%;
+}
+input{
+}
+select{
+        background-color: rgb(245, 245, 245);
+
+    width: 100%;
+    padding-block: 15px;
+    font-size: larger;
+    border-radius: 0;
+    border:0;
+}
+
+
+input,select{
+    transition: 0.2s;
+}
+input:hover,select:hover{
+    background-color: rgb(240, 240, 240);
 }
