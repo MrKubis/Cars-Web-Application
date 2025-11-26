@@ -33,7 +33,7 @@ namespace Cars.Application.Cars
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var car = await _context.Cars.FindAsync(request.Car.Id);
-                if(car == null) return null;
+                if(car == null) return Result<Unit>.Failure("Car not found");
                 car.Brand = request.Car.Brand ?? car.Brand;
                 car.Model = request.Car.Model ?? car.Model;
                 car.DoorsNumber = request.Car.DoorsNumber;
@@ -43,7 +43,6 @@ namespace Cars.Application.Cars
                 car.ProductionDate = request.Car.ProductionDate;
                 car.CarFuelConsumption = request.Car.CarFuelConsumption;
                 car.BodyType = request.Car.BodyType;
-                await _context.SaveChangesAsync();
                 var success = await _context.SaveChangesAsync(cancellationToken) > 0;
                 if (!success) return Result<Unit>.Failure("Failed to update car");
                 return Result<Unit>.Success(Unit.Value);

@@ -51,5 +51,15 @@ namespace Cars.API.Controllers
             }
             return BadRequest(result.Error);
         }
+        [HttpPatch] // api/cars
+        public async Task<IActionResult> EditCar([FromBody] Car car)
+        {
+            var result = await Mediator.Send(new Edit.Command { Car = car });
+            if(result.IsSuccess && result.Value != null)
+            {
+                return Ok(result.Value);
+            }
+            return BadRequest(result.Error);
+        }
     }
 }
