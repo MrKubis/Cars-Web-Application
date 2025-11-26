@@ -73,15 +73,15 @@ export default function CarCreateForm(){
                 </div>
                 <div>
                     <p>Number of doors</p>
-                    <input type="number" name="doorsNumber" required title="Number of doors"/>
+                    <input type="number" min={0} name="doorsNumber" required title="Number of doors"/>
                 </div>
                 <div>
                     <p>Luggage capacity</p>
-                    <input type="number" name="luggageCapacity" required title="Luggage capacity"/>
+                    <input type="number" min={0} name="luggageCapacity" required title="Luggage capacity"/>
                 </div>
                 <div>
                     <p>Engine capacity</p>
-                    <input type="number" name="engineCapacity" required title="Engine capacity"/>
+                    <input type="number" min={0} name="engineCapacity" required title="Engine capacity"/>
                 </div>
                 <div>
                     <p>Fuel type</p>

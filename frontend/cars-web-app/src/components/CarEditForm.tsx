@@ -74,15 +74,15 @@ export default function CarEditForm(props: {car:Car}){
                     </div>
                     <div>
                         <p>Number of doors</p>
-                        <input type="number" name="doorsNumber" required title="Number of doors" defaultValue={car?.doorsNumber}/>
+                        <input type="number" name="doorsNumber" min={0} required title="Number of doors" defaultValue={car?.doorsNumber}/>
                     </div>
                     <div>
                         <p>Luggage capacity</p>
-                        <input type="number" name="luggageCapacity" required title="Luggage capacity" defaultValue={car?.luggageCapacity}/>
+                        <input type="number" name="luggageCapacity" min={0} required title="Luggage capacity" defaultValue={car?.luggageCapacity}/>
                     </div>
                     <div>
                         <p>Engine capacity</p>
-                        <input type="number" name="engineCapacity" required title="Engine capacity" defaultValue={car?.engineCapacity}/>
+                        <input type="number" name="engineCapacity" min={0} required title="Engine capacity" defaultValue={car?.engineCapacity}/>
                     </div>
                     <div>
                         <p>Fuel type</p>
