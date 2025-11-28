@@ -45,7 +45,6 @@ export default function CarCreateForm(){
         })
         .finally(() =>{
             setIsLoading(false);       
-            event.currentTarget.reset();     
         })
     }
     

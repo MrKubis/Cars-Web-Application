@@ -10,7 +10,19 @@ export default function CarsListPage(){
     const [isLoading,setIsLoading] = useState<Boolean>(false);
     const [error,setError] = useState<string | null>(null);
     
-    useEffect(()=>{
+    function handleDelete(id: string | null){
+        axios.delete(`http://localhost:5257/api/cars/${id}`)
+        .then(()=>{
+            alert("Car deleted!")
+            fetchCars();
+        })
+        .catch(error=>{
+            console.error(error);
+        })
+        
+    }
+
+    function fetchCars(){
         setIsLoading(true)
         axios.get<Car[]>('http://localhost:5257/api/cars')
         .then(response =>{
@@ -22,6 +34,10 @@ export default function CarsListPage(){
         .finally(()=>{
             setIsLoading(false);
         });
+    }
+
+    useEffect(()=>{
+        fetchCars();
     },[]);
     return(
         <>
@@ -29,11 +45,14 @@ export default function CarsListPage(){
         <ul>
             {
                 cars.map(car =>(
-                    <NavLink style={{color:"black",textDecoration:"none"}} key={car.id} to={`${car.id}`}>
-                    <li>
-                        {`${car.brand}`}
-                    </li>
-                    </NavLink>
+                    <div>
+                        <NavLink style={{color:"black",textDecoration:"none"}} key={car.id} to={`${car.id}`}>
+                        <li>
+                            {`${car.brand}`}
+                        </li>
+                        </NavLink>
+                        <button onClick={()=> handleDelete(car.id)}>Delete</button>
+                    </div>
 
                 ))
             }
