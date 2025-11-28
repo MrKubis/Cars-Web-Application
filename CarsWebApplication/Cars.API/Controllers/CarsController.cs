@@ -61,5 +61,17 @@ namespace Cars.API.Controllers
             }
             return BadRequest(result.Error);
         }
+
+        [HttpDelete("{id}")] // api/cars
+        public async Task<IActionResult> DeleteCar(Guid id)
+        {
+            var result = await Mediator.Send(new Delete.Command { Id = id });
+            if (result.IsSuccess)
+            {
+                return NoContent();
+            }
+            return BadRequest(result.Error);
+        }
+        
     }
 }
