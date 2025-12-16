@@ -15,8 +15,6 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({children} :PropsWithChildren) =>{
     
-
-
     const [user, setUser] = useState<User | null>(null);
 
     //Co refresh strony
