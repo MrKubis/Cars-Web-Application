@@ -13,6 +13,6 @@ public class RegisterDto
     public string Email { get; set; }
     [Required]
     // Przynajmniej 1 cyfra ,1 mała litera z [a-z], 1 duża litera z [A-Z], długość 4-8 znaków 
-    [RegularExpression("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4-8}$")]
+    //[RegularExpression("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4-8}$")]
     public string Password { get; set; }   
 }

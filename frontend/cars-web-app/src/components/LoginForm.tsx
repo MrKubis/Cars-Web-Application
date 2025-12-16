@@ -17,7 +17,7 @@ export default function LoginForm(){
         const formData = new FormData(event.currentTarget);
         console.log(formData);
 
-        api.post("http://localhost:5257/api/account/login",
+        api.post("/account/login",
         {
             email:formData.get("email") as string,
             password:formData.get("password") as string
@@ -33,8 +33,10 @@ export default function LoginForm(){
         })
         .finally(()=>{
             setIsLoading(false);
+
         })
     }
+
 
     return(
         <form onSubmit={handleSubmit}>
@@ -47,10 +49,10 @@ export default function LoginForm(){
                 <input type="password" required name="password"/>
             </div>
             <div>
-                <p></p>
+                <p>Logged in!</p>
                 <input type="submit" value={"Log in"}/>
 
             </div>
         </form>
-    )
+    );
 }
