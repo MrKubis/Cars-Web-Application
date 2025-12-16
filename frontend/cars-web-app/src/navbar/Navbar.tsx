@@ -21,6 +21,23 @@ export default function Navbar(){
                         Create a car
                     </div>
                 </NavLink> 
+
+                <NavLink className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "active" : ""
+                                    }
+                            to="/login" style={{textDecoration:'none'}}>
+                    <div className="navbar-link-container">
+                        Login
+                    </div>
+                </NavLink>
+                <NavLink className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "active" : ""
+                                    }
+                            to="/register" style={{textDecoration:'none'}}>
+                    <div className="navbar-link-container">
+                        Register
+                    </div>
+                </NavLink>
         </div>
     )
 }

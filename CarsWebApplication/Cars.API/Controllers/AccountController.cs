@@ -30,7 +30,6 @@ namespace Cars.API.Controllers
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
             if (user == null)
             {
-                
                 return Unauthorized();
             }
 
@@ -38,11 +37,13 @@ namespace Cars.API.Controllers
 
             if (isPasswordValid)
             {
+                var token = _tokenService.CreateToken(user);
+                SetTokenCookie(token);
+
                 return new UserDto()
                 {
                     DisplayName = user.DisplayName,
                     UserName = user.UserName,
-                    Token = _tokenService.CreateToken(user)
                 };
             }
 
@@ -66,11 +67,12 @@ namespace Cars.API.Controllers
             var result = _userManager.CreateAsync(user,registerDto.Password);
             if (result.IsCompletedSuccessfully)
             {
+                var token = _tokenService.CreateToken(user);
+                SetTokenCookie(token);
                 return new UserDto
                 {
                     DisplayName = user.DisplayName,
                     UserName = user.UserName,
-                    Token = _tokenService.CreateToken(user)
                 };
             }
             return BadRequest("Registration failed");
@@ -80,13 +82,25 @@ namespace Cars.API.Controllers
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
             var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+            var token = _tokenService.CreateToken(user);
+            SetTokenCookie(token);
             return new UserDto
             {
                 DisplayName = user.DisplayName,
-                Token = _tokenService.CreateToken(user),
                 UserName = user.UserName
             };
-        }    
+        }
+
+        private void SetTokenCookie(string token)
+        {
+            Response.Cookies.Append("jwt",token,new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = false, //development purposes only
+                SameSite = SameSiteMode.Lax,
+                Expires = DateTime.Now.AddDays(2)
+            });
+        }
     }
 }
 

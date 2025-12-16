@@ -5,6 +5,8 @@ import CarDetailsPage from "./pages/CarDetailsPage";
 import CarEditPage from "./pages/CarEditPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import CarCreatePage from "./pages/CarCreatePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 export const routes: RouteObject[] = [
     {
@@ -26,6 +28,14 @@ export const routes: RouteObject[] = [
             {
                 path:'cars/create',
                 element:<CarCreatePage/>
+            },
+            {
+                path:'login',
+                element:<LoginPage/>
+            },
+            {
+                path:'register',
+                element:<RegisterPage/>
             },
             {
                 path:'not-found',

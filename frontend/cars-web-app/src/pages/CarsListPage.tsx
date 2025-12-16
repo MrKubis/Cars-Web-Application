@@ -1,8 +1,8 @@
-import axios from "axios"
 import { useEffect, useState } from "react";
 import { Car } from "../interfaces/Car";
 import "./Page.css"
 import { NavLink } from "react-router-dom";
+import api from "../api/api";
 
 export default function CarsListPage(){
 
@@ -11,7 +11,7 @@ export default function CarsListPage(){
     const [error,setError] = useState<string | null>(null);
     
     function handleDelete(id: string | null){
-        axios.delete(`http://localhost:5257/api/cars/${id}`)
+        api.delete(`http://localhost:5257/api/cars/${id}`)
         .then(()=>{
             alert("Car deleted!")
             fetchCars();
@@ -24,7 +24,7 @@ export default function CarsListPage(){
 
     function fetchCars(){
         setIsLoading(true)
-        axios.get<Car[]>('http://localhost:5257/api/cars')
+        api.get<Car[]>('http://localhost:5257/api/cars')
         .then(response =>{
             setCars(response.data);
         })

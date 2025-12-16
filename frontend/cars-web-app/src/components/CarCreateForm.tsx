@@ -4,6 +4,7 @@ import axios from "axios";
 import "./styles/Form.css"
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import api from "../api/api";
 export default function CarCreateForm(){
     
     const [car,setCar] = useState<Car | null>(null)
@@ -24,7 +25,7 @@ export default function CarCreateForm(){
         const formData = new FormData(event.currentTarget)
         console.log(formData);
 
-        axios.post("http://localhost:5257/api/cars",
+        api.post("http://localhost:5257/api/cars",
             {
                 brand: formData.get("brandName") as string,
                 model: formData.get("modelName") as string,

@@ -26,6 +26,18 @@ public static class IdentityService
                 ValidateIssuer = false,
                 ValidateAudience = false,
             };
+            options.Events = new JwtBearerEvents
+            {
+                OnMessageReceived = context =>
+                {
+                    if (context.Request.Cookies.ContainsKey("jwt"))
+                    {
+                        context.Token = context.Request.Cookies["jwt"];
+                    }
+
+                    return Task.CompletedTask;
+                }
+            };
         });
         
         services.AddScoped<TokenService>();
